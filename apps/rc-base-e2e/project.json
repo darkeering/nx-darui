@@ -1,0 +1,31 @@
+{
+  "name": "rc-base-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/rc-base-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/rc-base-e2e/cypress.config.ts",
+        "devServerTarget": "rc-base:serve:development",
+        "testingType": "e2e",
+        "baseUrl": "http://localhost:4203"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "rc-base:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/rc-base-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["rc-base"]
+}
